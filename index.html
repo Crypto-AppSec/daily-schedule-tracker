@@ -46,16 +46,42 @@
                 </div>
             </div>
 
-            <div class="habits-section">
+            <!-- Morning Routine Section -->
+            <div class="routine-section morning-routine">
                 <div class="section-header">
-                    <h2>Daily Habits</h2>
-                    <button id="add-habit-btn" class="btn-primary">
+                    <h2><i class="fas fa-sun"></i> Morning Routine</h2>
+                    <button class="add-habit-btn btn-primary" data-routine="morning">
                         <i class="fas fa-plus"></i> Add Habit
                     </button>
                 </div>
+                <div class="routine-container" id="morning-habits-container">
+                    <!-- Morning habits will be dynamically added here -->
+                </div>
+            </div>
 
-                <div id="habits-container" class="habits-container">
-                    <!-- Habits will be dynamically added here -->
+            <!-- Midday Routine Section -->
+            <div class="routine-section midday-routine">
+                <div class="section-header">
+                    <h2><i class="fas fa-clock"></i> Midday Routine</h2>
+                    <button class="add-habit-btn btn-primary" data-routine="midday">
+                        <i class="fas fa-plus"></i> Add Habit
+                    </button>
+                </div>
+                <div class="routine-container" id="midday-habits-container">
+                    <!-- Midday habits will be dynamically added here -->
+                </div>
+            </div>
+
+            <!-- Evening Routine Section -->
+            <div class="routine-section evening-routine">
+                <div class="section-header">
+                    <h2><i class="fas fa-moon"></i> Evening Routine</h2>
+                    <button class="add-habit-btn btn-primary" data-routine="evening">
+                        <i class="fas fa-plus"></i> Add Habit
+                    </button>
+                </div>
+                <div class="routine-container" id="evening-habits-container">
+                    <!-- Evening habits will be dynamically added here -->
                 </div>
             </div>
 
@@ -85,6 +111,14 @@
                 <div class="form-group">
                     <label for="habit-name">Habit Name</label>
                     <input type="text" id="habit-name" required placeholder="e.g., Morning Exercise">
+                </div>
+                <div class="form-group">
+                    <label for="habit-routine">Routine</label>
+                    <select id="habit-routine" required>
+                        <option value="morning">Morning Routine</option>
+                        <option value="midday">Midday Routine</option>
+                        <option value="evening">Evening Routine</option>
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="habit-category">Category</label>
@@ -141,12 +175,11 @@
                 <div class="form-actions">
                     <button type="button" class="btn-secondary" id="cancel-schedule">Cancel</button>
                     <button type="submit" class="btn-primary">Add Time Block</button>
-                </div>
-            </form>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
-<-- upgrade Updated for GitHub Pages -->
+        <script src="script.js"></script>
+    </body>
+    </html>

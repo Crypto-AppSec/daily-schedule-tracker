@@ -1,4 +1,4 @@
-// Daily Productivity Habit Tracker
+// Daily Productivity Habit Tracker with Routine Sections
 class HabitTracker {
     constructor() {
         this.habits = JSON.parse(localStorage.getItem('habits')) || [];
@@ -12,6 +12,7 @@ class HabitTracker {
 
     init() {
         this.setupEventListeners();
+        this.loadDefaultHabits();
         this.loadHabits();
         this.loadSchedules();
         this.updateStats();
@@ -19,8 +20,11 @@ class HabitTracker {
     }
 
     setupEventListeners() {
-        // Modal controls
-        document.getElementById('add-habit-btn').addEventListener('click', () => this.openModal('habit-modal'));
+        // Modal controls for all routine sections
+        document.querySelectorAll('.add-habit-btn').forEach(btn => {
+            btn.addEventListener('click', () => this.openModal('habit-modal'));
+        });
+        
         document.getElementById('add-schedule-btn').addEventListener('click', () => this.openModal('schedule-modal'));
         
         // Close modals
@@ -44,8 +48,65 @@ class HabitTracker {
         });
     }
 
+    loadDefaultHabits() {
+        // Only add default habits if no habits exist
+        if (this.habits.length === 0) {
+            const defaultMorningHabits = [
+                {
+                    id: 'morning-light-1',
+                    name: 'Get outside within 30-60 minutes of waking for natural light exposure',
+                    routine: 'morning',
+                    category: 'health',
+                    time: '07:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Sunny day: 5-10 minutes, Cloudy day: 10-15 minutes, Overcast day: up to 30 minutes'
+                },
+                {
+                    id: 'morning-light-2',
+                    name: 'Look toward the sunrise (never stare directly at the sun)',
+                    routine: 'morning',
+                    category: 'health',
+                    time: '07:05',
+                    createdAt: new Date().toISOString(),
+                    completedDates: []
+                },
+                {
+                    id: 'morning-walk',
+                    name: 'Take a morning walk for combined light exposure and optic flow benefits',
+                    routine: 'morning',
+                    category: 'health',
+                    time: '07:10',
+                    createdAt: new Date().toISOString(),
+                    completedDates: []
+                },
+                {
+                    id: 'morning-hydration',
+                    name: 'Drink 32 ounces (1 liter) of water with a pinch of sea salt',
+                    routine: 'morning',
+                    category: 'health',
+                    time: '07:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: []
+                }
+            ];
+
+            this.habits.push(...defaultMorningHabits);
+            this.saveHabits();
+        }
+    }
+
     openModal(modalId) {
         document.getElementById(modalId).style.display = 'block';
+        
+        // Pre-select routine based on which button was clicked
+        if (modalId === 'habit-modal') {
+            const clickedButton = event.target.closest('.add-habit-btn');
+            if (clickedButton) {
+                const routine = clickedButton.getAttribute('data-routine');
+                document.getElementById('habit-routine').value = routine;
+            }
+        }
     }
 
     closeModal(modalId) {
@@ -60,6 +121,7 @@ class HabitTracker {
         const habitData = {
             id: Date.now(),
             name: document.getElementById('habit-name').value,
+            routine: document.getElementById('habit-routine').value,
             category: document.getElementById('habit-category').value,
             time: document.getElementById('habit-time').value,
             createdAt: new Date().toISOString(),
@@ -91,20 +153,40 @@ class HabitTracker {
     }
 
     loadHabits() {
-        const container = document.getElementById('habits-container');
-        container.innerHTML = '';
+        // Clear all routine containers
+        document.getElementById('morning-habits-container').innerHTML = '';
+        document.getElementById('midday-habits-container').innerHTML = '';
+        document.getElementById('evening-habits-container').innerHTML = '';
 
-        if (this.habits.length === 0) {
+        // Group habits by routine
+        const morningHabits = this.habits.filter(h => h.routine === 'morning');
+        const middayHabits = this.habits.filter(h => h.routine === 'midday');
+        const eveningHabits = this.habits.filter(h => h.routine === 'evening');
+
+        // Load morning habits
+        this.loadRoutineHabits('morning-habits-container', morningHabits, 'morning');
+        
+        // Load midday habits
+        this.loadRoutineHabits('midday-habits-container', middayHabits, 'midday');
+        
+        // Load evening habits
+        this.loadRoutineHabits('evening-habits-container', eveningHabits, 'evening');
+    }
+
+    loadRoutineHabits(containerId, habits, routineType) {
+        const container = document.getElementById(containerId);
+        
+        if (habits.length === 0) {
             container.innerHTML = `
                 <div class="empty-state">
                     <i class="fas fa-plus-circle"></i>
-                    <p>No habits added yet. Click "Add Habit" to get started!</p>
+                    <p>No ${routineType} habits added yet. Click "Add Habit" to get started!</p>
                 </div>
             `;
             return;
         }
 
-        this.habits.forEach(habit => {
+        habits.forEach(habit => {
             const isCompletedToday = this.completedToday.includes(habit.id);
             const habitElement = document.createElement('div');
             habitElement.className = `habit-item ${isCompletedToday ? 'completed' : ''}`;
@@ -119,13 +201,14 @@ class HabitTracker {
                         ${this.getCategoryDisplayName(habit.category)}
                         ${habit.time ? `<i class="fas fa-clock"></i> ${habit.time}` : ''}
                     </div>
+                    ${habit.description ? `<div class="habit-description"><i class="fas fa-info-circle"></i> ${habit.description}</div>` : ''}
                 </div>
                 <div class="habit-actions">
                     <button class="btn-complete ${isCompletedToday ? 'completed' : ''}" 
-                            onclick="habitTracker.toggleHabit(${habit.id})">
+                            onclick="habitTracker.toggleHabit('${habit.id}')">
                         ${isCompletedToday ? '<i class="fas fa-check"></i> Done' : '<i class="fas fa-check"></i> Complete'}
                     </button>
-                    <button class="btn-delete" onclick="habitTracker.deleteHabit(${habit.id})">
+                    <button class="btn-delete" onclick="habitTracker.deleteHabit('${habit.id}')">
                         <i class="fas fa-trash"></i>
                     </button>
                 </div>
@@ -267,7 +350,7 @@ class HabitTracker {
         const categories = {
             'health': 'Health & Wellness',
             'productivity': 'Productivity',
-            'Learning': 'Learning',
+            'learning': 'Learning',
             'mindfulness': 'Mindfulness',
             'social': 'Social'
         };
