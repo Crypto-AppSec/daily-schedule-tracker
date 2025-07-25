@@ -1,6 +1,6 @@
 # Daily Productivity Habit Tracker
 
-A beautiful, modern web application for tracking daily habits and productivity routines. Built with HTML, CSS, and JavaScript, this app helps you build consistent habits and optimize your daily schedule.
+A beautiful, modern web application for tracking daily habits and productivity routines. Built with HTML, CSS, and JavaScript, this app helps you build consistent habits and optimize your daily schedule. Inspired by Huberman Lab protocols for optimal daily routines.
 
 ## Features
 
