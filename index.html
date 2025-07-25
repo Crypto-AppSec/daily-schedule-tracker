@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Productivity Habit Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-chart-line"></i> Daily Productivity Tracker</h1>
+            <p class="subtitle">Track your habits and optimize your daily routine</p>
+        </header>
+
+        <div class="main-content">
+            <div class="stats-dashboard">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="current-streak">0</h3>
+                        <p>Day Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="completed-today">0</h3>
+                        <p>Completed Today</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="completion-rate">0%</h3>
+                        <p>Success Rate</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="habits-section">
+                <div class="section-header">
+                    <h2>Daily Habits</h2>
+                    <button id="add-habit-btn" class="btn-primary">
+                        <i class="fas fa-plus"></i> Add Habit
+                    </button>
+                </div>
+
+                <div id="habits-container" class="habits-container">
+                    <!-- Habits will be dynamically added here -->
+                </div>
+            </div>
+
+            <div class="schedule-section">
+                <div class="section-header">
+                    <h2>Daily Schedule</h2>
+                    <button id="add-schedule-btn" class="btn-secondary">
+                        <i class="fas fa-clock"></i> Add Time Block
+                    </button>
+                </div>
+
+                <div id="schedule-container" class="schedule-container">
+                    <!-- Schedule items will be dynamically added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Habit Modal -->
+    <div id="habit-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Habit</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="habit-form">
+                <div class="form-group">
+                    <label for="habit-name">Habit Name</label>
+                    <input type="text" id="habit-name" required placeholder="e.g., Morning Exercise">
+                </div>
+                <div class="form-group">
+                    <label for="habit-category">Category</label>
+                    <select id="habit-category" required>
+                        <option value="health">Health & Wellness</option>
+                        <option value="productivity">Productivity</option>
+                        <option value="learning">Learning</option>
+                        <option value="mindfulness">Mindfulness</option>
+                        <option value="social">Social</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="habit-time">Preferred Time</label>
+                    <input type="time" id="habit-time">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-habit">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Habit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Schedule Modal -->
+    <div id="schedule-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add Time Block</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form id="schedule-form">
+                <div class="form-group">
+                    <label for="schedule-title">Activity Title</label>
+                    <input type="text" id="schedule-title" required placeholder="e.g., Deep Work Session">
+                </div>
+                <div class="form-group">
+                    <label for="schedule-start">Start Time</label>
+                    <input type="time" id="schedule-start" required>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-end">End Time</label>
+                    <input type="time" id="schedule-end" required>
+                </div>
+                <div class="form-group">
+                    <label for="schedule-type">Type</label>
+                    <select id="schedule-type" required>
+                        <option value="work">Work</option>
+                        <option value="break">Break</option>
+                        <option value="exercise">Exercise</option>
+                        <option value="learning">Learning</option>
+                        <option value="social">Social</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancel-schedule">Cancel</button>
+                    <button type="submit" class="btn-primary">Add Time Block</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
