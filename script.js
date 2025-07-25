@@ -88,6 +88,26 @@ class HabitTracker {
                     time: '07:00',
                     createdAt: new Date().toISOString(),
                     completedDates: []
+                },
+                {
+                    id: 'morning-caffeine-delay',
+                    name: 'Delay caffeine for 90-120 minutes after waking (unless exercising first)',
+                    routine: 'morning',
+                    category: 'health',
+                    time: '08:30',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'This helps optimize cortisol and adenosine receptor function'
+                },
+                {
+                    id: 'morning-breathing',
+                    name: 'Use cyclic hyperventilation breathing (if needed for energy)',
+                    routine: 'morning',
+                    category: 'health',
+                    time: '07:15',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Optional: Use when you need an energy boost'
                 }
             ];
 
