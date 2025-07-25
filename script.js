@@ -111,7 +111,90 @@ class HabitTracker {
                 }
             ];
 
-            this.habits.push(...defaultMorningHabits);
+            const defaultMiddayHabits = [
+                {
+                    id: 'midday-exercise',
+                    name: 'Complete your main exercise session (see exercise protocol guidelines)',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '10:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Follow your specific exercise protocol for optimal performance'
+                },
+                {
+                    id: 'midday-walk',
+                    name: 'Take a 5-30 minute walk after lunch for metabolism and circadian calibration',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '13:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Helps with digestion and circadian rhythm optimization'
+                },
+                {
+                    id: 'midday-lunch',
+                    name: 'Eat a lower-carb lunch to avoid afternoon energy crash',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '12:30',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Focus on protein and healthy fats to maintain energy levels'
+                },
+                {
+                    id: 'midday-hydration',
+                    name: 'Continue hydrating throughout the day',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '14:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Aim for consistent water intake to maintain performance'
+                },
+                {
+                    id: 'midday-nap',
+                    name: 'Take a 20-minute nap (if needed and if it doesn\'t make you groggy)',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '15:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Optional: Only if you feel tired and it doesn\'t affect evening sleep'
+                },
+                {
+                    id: 'midday-nsdr',
+                    name: 'Use 10-30 minute NSDR protocol as alternative to napping for mental energy boost',
+                    routine: 'midday',
+                    category: 'mindfulness',
+                    time: '15:30',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Non-Sleep Deep Rest: Lie down, close eyes, focus on breathing for mental recovery'
+                },
+                {
+                    id: 'midday-sunset-light',
+                    name: 'Get light exposure around sunset to reduce negative effects of later light exposure',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '17:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: '5-10 minutes of natural light exposure helps circadian rhythm'
+                },
+                {
+                    id: 'midday-dinner',
+                    name: 'Eat dinner with higher-carb, complex foods and protein to promote relaxation',
+                    routine: 'midday',
+                    category: 'health',
+                    time: '18:30',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Complex carbs and protein help with evening relaxation and sleep preparation'
+                }
+            ];
+
+            this.habits.push(...defaultMorningHabits, ...defaultMiddayHabits);
             this.saveHabits();
         }
     }
