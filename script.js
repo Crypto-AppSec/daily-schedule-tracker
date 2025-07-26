@@ -194,7 +194,110 @@ class HabitTracker {
                 }
             ];
 
-            this.habits.push(...defaultMorningHabits, ...defaultMiddayHabits);
+            const defaultEveningHabits = [
+                {
+                    id: 'evening-light-avoidance',
+                    name: 'Avoid bright lights 2-3 hours before bed',
+                    routine: 'evening',
+                    category: 'health',
+                    time: '19:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Use dim lighting and avoid blue light from screens'
+                },
+                {
+                    id: 'evening-shower',
+                    name: 'Take a warm shower or bath',
+                    routine: 'evening',
+                    category: 'health',
+                    time: '20:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Helps lower body temperature and promote relaxation'
+                },
+                {
+                    id: 'evening-meditation',
+                    name: 'Practice evening meditation or journaling',
+                    routine: 'evening',
+                    category: 'mindfulness',
+                    time: '20:30',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: '10-15 minutes of quiet reflection or gratitude practice'
+                },
+                {
+                    id: 'evening-reading',
+                    name: 'Read a book (no screens)',
+                    routine: 'evening',
+                    category: 'learning',
+                    time: '21:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Physical book or e-reader with blue light filter'
+                },
+                {
+                    id: 'evening-temperature',
+                    name: 'Set bedroom temperature to 65-67°F (18-19°C)',
+                    routine: 'evening',
+                    category: 'health',
+                    time: '21:30',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Optimal temperature for sleep quality'
+                },
+                {
+                    id: 'evening-caffeine-avoid',
+                    name: 'Avoid caffeine after 2 PM',
+                    routine: 'evening',
+                    category: 'health',
+                    time: '14:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Caffeine has a 6-8 hour half-life'
+                },
+                {
+                    id: 'evening-alcohol-limit',
+                    name: 'Limit alcohol consumption',
+                    routine: 'evening',
+                    category: 'health',
+                    time: '18:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Alcohol can disrupt sleep quality and REM cycles'
+                },
+                {
+                    id: 'evening-gratitude',
+                    name: 'Practice gratitude or reflection',
+                    routine: 'evening',
+                    category: 'mindfulness',
+                    time: '21:15',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Write down 3 things you\'re grateful for today'
+                },
+                {
+                    id: 'evening-planning',
+                    name: 'Plan tomorrow\'s priorities',
+                    routine: 'evening',
+                    category: 'productivity',
+                    time: '21:45',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: 'Set 2-3 main priorities for tomorrow'
+                },
+                {
+                    id: 'evening-breathing',
+                    name: 'Practice deep breathing exercises',
+                    routine: 'evening',
+                    category: 'mindfulness',
+                    time: '22:00',
+                    createdAt: new Date().toISOString(),
+                    completedDates: [],
+                    description: '4-7-8 breathing: Inhale 4, hold 7, exhale 8'
+                }
+            ];
+
+            this.habits.push(...defaultMorningHabits, ...defaultMiddayHabits, ...defaultEveningHabits);
             this.saveHabits();
         }
     }
